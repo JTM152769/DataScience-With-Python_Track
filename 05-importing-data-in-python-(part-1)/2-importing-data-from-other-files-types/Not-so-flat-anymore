@@ -1,3 +1,4 @@
+'''
 Not so flat any more
 
 In Chapter 1, you learned how to use the IPython magic command ! ls to explore your current working directory.
@@ -14,7 +15,7 @@ Run this code in the IPython shell and answer the following questions. Ignore th
 
 Check out the contents of your current directory and answer the following questions: (1) which file is in your directory
 and NOT an example of a flat file; (2) why is it not a flat file?
-
+'''
 Possible Answers
 
     database.db is not a flat file because relational databases contain structured relationships and flat files do not.
