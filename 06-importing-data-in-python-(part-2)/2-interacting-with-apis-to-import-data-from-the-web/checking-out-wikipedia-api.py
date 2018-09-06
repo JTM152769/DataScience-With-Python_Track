@@ -1,3 +1,11 @@
+'''Checking out the Wikipedia API
+
+You're doing so well and having so much fun that we're going to throw one more API at you: the Wikipedia API (documented here). 
+You'll figure out how to find and extract information from the Wikipedia page for Pizza. What gets a bit wild here is that your 
+query will return nested JSONs, that is, JSONs with JSONs, but Python can handle that because it will translate them into 
+dictionaries within dictionaries.'''
+
+
 # Import package
 import requests
 
