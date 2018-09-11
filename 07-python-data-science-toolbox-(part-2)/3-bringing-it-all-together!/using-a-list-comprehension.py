@@ -151,6 +151,7 @@ print(row_lists[0])
 print(row_lists[1])
 
 # Turn list of lists into list of dicts: list_of_dicts
+#this is done using function lists2dict
 list_of_dicts = [lists2dict(feature_names, sublist) for sublist in row_lists]
 
 # Print the first two dictionaries in list_of_dicts
