@@ -25,5 +25,5 @@ df.columns = results[0].keys()
 print(df)
 
 # Plot the DataFrame
-df.plot.barh()
+df.plot.bar()
 plt.show()
