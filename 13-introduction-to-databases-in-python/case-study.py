@@ -124,3 +124,80 @@ results = connection.execute(stmt).fetchall()
 # Print the average age by sex
 for result in results:
 print(result.sex, result.average_age)
+
+
+
+'''
+Build a Query to Determine the Percentage of Population by Gender and State
+In this exercise, you will write a query to determine the percentage of the population in 2000 that comprised of women. You will group this query by state.
+INSTRUCTIONS
+0XP
+INSTRUCTIONS
+0XP
+Import case, cast and Float from sqlalchemy.
+Define a statement to select state and the percentage of females in 2000.
+Inside func.sum(), use case() to select females (using the sex column) from pop2000. Remember to specify else_=0 if the sex is not 'F'.
+To get the percentage, divide the number of females in the year 2000 by the overall population in 2000. Cast the divisor - census.columns.pop2000 - to Float before multiplying by 100.
+Group the query by state.
+Execute the query and store it as results.
+Print state and percent_female for each record. This has been done for you, so hit 'Submit Answer' to see the result.
+'''
+# import case, cast and Float from sqlalchemy
+from sqlalchemy import case, cast, Float
+
+# Build a query to calculate the percentage of females in 2000: stmt
+stmt = select([census.columns.state,
+    (func.sum(
+        case([
+            (census.columns.sex == 'F', census.columns.pop2000)
+        ], else_=0)) /
+     cast(func.sum(census.columns.pop2000), Float) * 100).label('percent_female')
+])
+
+# Group By state
+stmt = stmt.group_by(census.columns.state)
+
+# Execute the query and store the results: results
+results = connection.execute(stmt).fetchall()
+
+# Print the percentage
+for result in results:
+print(result.state, result.percent_female)
+
+
+'''
+Build a Query to Determine the Difference by State from the 2000 and 2008 Censuses
+In this final exercise, you will write a query to calculate the states that changed the most in population. You will limit your query to display only the top 10 states.
+INSTRUCTIONS
+100XP
+INSTRUCTIONS
+100XP
+Build a statement to:
+Select state.
+Calculate the difference in population between 2008 (pop2008) and 2000 (pop2000).
+Group the query by census.columns.state using the .group_by() method on stmt.
+Order by 'pop_change' in descending order using the .order_by() method with the desc() function on 'pop_change'.
+Limit the query to the top 10 states using the .limit() method.
+Execute the query and store it as results.
+Print the state and the population change for each result. This has been done for you, so hit 'Submit Answer' to see the result!
+'''
+# Build query to return state name and population difference from 2008 to 2000
+stmt = select([census.columns.state,
+     (census.columns.pop2008-census.columns.pop2000).label('pop_change')
+])
+
+# Group by State
+stmt = stmt.group_by(census.columns.state)
+
+# Order by Population Change
+stmt = stmt.order_by(desc('pop_change'))
+
+# Limit to top 10
+stmt = stmt.limit(10)
+
+# Use connection to execute the statement and fetch all results
+results = connection.execute(stmt).fetchall()
+
+# Print the state and population change for each record
+for result in results:
+print('{}:{}'.format(result.state, result.pop_change))
