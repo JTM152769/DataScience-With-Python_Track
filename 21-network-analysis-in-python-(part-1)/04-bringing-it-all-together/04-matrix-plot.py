@@ -1,4 +1,22 @@
 '''
+MatrixPlot
+
+Let's now practice making some visualizations. The first one will be the MatrixPlot. In a MatrixPlot, the matrix 
+is the representation of the edges.
+
+Instructions
+70 XP
+
+    Make a MatrixPlot visualization of the largest connected component subgraph, with authors grouped by their user group number.
+        First, calculate the largest connected component subgraph by using the nx.connected_component_subgraphs(G) inside the 
+        provided sorted() function. Python's built-in sorted() function takes an iterable and returns a sorted list (in ascending 
+        order, by default). Therefore, to access the largest connected component subgraph, the statement is sliced with [-1].
+        Create the MatrixPlot object h. You have to specify the parameters graph and node_grouping to be the largest connected
+        component subgraph and 'grouping', respectively.
+        Draw the MatrixPlot object to the screen and display the plot.
+
+
+'''
 # Import necessary modules
 from nxviz import MatrixPlot
 import matplotlib.pyplot as plt
@@ -11,21 +29,4 @@ h = MatrixPlot(graph=largest_ccs, node_grouping='grouping')
 
 # Draw the MatrixPlot to the screen
 h.draw()
-plt.show()
-'''
-# Import necessary modules
-from nxviz.plots import ArcPlot
-import matplotlib.pyplot as plt
-
-# Iterate over all the nodes in G, including the metadata
-for n, d in G.nodes(data=True):
-
-    # Calculate the degree of each node: G.node[n]['degree']
-    G.node[n]['degree'] = nx.degree(G, n)
-    
-# Create the ArcPlot object: a
-a = ArcPlot(graph=G, node_order='degree')
-
-# Draw the ArcPlot to the screen
-a.draw()
 plt.show()
