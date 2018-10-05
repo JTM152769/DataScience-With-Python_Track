@@ -19,7 +19,7 @@ INSTRUCTIONS
 -Print the info of the subset dataframe, df_subset.
 '''
 # Print the info of df
-print(df.info)
+print(df.info())
 
 # Print the info of df_subset
-print(df_subset.info)
+print(df_subset.info())
