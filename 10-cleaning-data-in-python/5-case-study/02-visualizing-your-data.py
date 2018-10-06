@@ -19,6 +19,7 @@ import pandas as pd
 
 g1800s = pd.read_csv('../_datasets/g1800s.csv')
 
+
 # Import matplotlib.pyplot
 import matplotlib.pyplot as plt
 
@@ -32,3 +33,6 @@ plt.ylabel('Life Expectancy by Country in 1899')
 # Specify axis limits
 plt.xlim(20, 55)
 plt.ylim(20, 55)
+
+# Display the plot
+plt.show()
