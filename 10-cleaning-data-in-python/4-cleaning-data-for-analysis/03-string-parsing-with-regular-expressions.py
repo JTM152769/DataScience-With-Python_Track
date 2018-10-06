@@ -34,5 +34,6 @@ result = prog.match('123-456-7890')
 print(bool(result))
 
 # See if the pattern matches
-result = prog.match('1123-456-7890')
-print(bool(result))
+result2 = prog.match('1123-456-7890')
+print(bool(result2))
+
