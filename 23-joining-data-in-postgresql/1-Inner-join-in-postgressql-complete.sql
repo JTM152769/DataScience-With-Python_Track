@@ -312,6 +312,20 @@ WHERE p.year = 2010
 ORDER BY p.life_expectancy
 LIMIT 5;
 
+
+-----Outer Challenge--------
+SELECT c.name AS country,
+       region,
+       life_expectancy AS life_exp
+FROM countries AS c
+LEFT JOIN populations AS p
+ON c.code = p.country_code
+WHERE year = 2010
+ORDER BY life_exp
+LIMIT 5;
+
+
+
 --- CHAPTER 3 - Set theory clauses
 
 --- Union
@@ -364,6 +378,8 @@ INTERSECT
 SELECT ci.name
 FROM cities AS ci;
 
+----Review Union and Intersect-----
+INTERSECT: returns only records appearing in both tables
 
 --- Except
 
@@ -392,12 +408,18 @@ WHERE country.region = 'Middle East';
 
 ---
 
-SELECT DISTINCT lang.name
-FROM languages AS lang
-ORDER BY lang.name;
+/*
+SELECT code
+FROM countries
+WHERE region = 'Middle East';
+*/
 
+SELECT DISTINCT name
+FROM languages
+ORDER BY name;
 ---
 
+------Semi-join--------------
 SELECT DISTINCT name
 FROM languages
 WHERE code IN
@@ -439,7 +461,7 @@ WHERE c1.continent = 'Oceania'
     FROM currencies);
 	 
 ---
-
+-------Set theory challenge------------
 -- select the city name
 SELECT name
 -- alias the table where city name resides
@@ -510,6 +532,14 @@ FROM countries
 ORDER BY cities_num DESC, country
 LIMIT 9;
 
+
+SELECT countries.name AS country,
+  (SELECT COUNT(*)
+   FROM cities
+   WHERE countries.code = cities.country_code) AS cities_num
+FROM countries
+ORDER BY cities_num DESC, country
+LIMIT 9;
 --- Subquery inside from
 
 SELECT code, COUNT(name) AS lang_num
@@ -585,6 +615,7 @@ WHERE year = 2015 AND region = 'Central America'
 ORDER BY c.name;
 
 ---
+--- Final challenge2
 
 -- choose fields
 SELECT region, continent, AVG(fertility_rate) AS avg_fert_rate
@@ -601,7 +632,8 @@ GROUP BY region, continent
 -- how should we sort?
 ORDER BY avg_fert_rate;
 
----
+--- Final challenges3
+
 
 SELECT name, country_code, city_proper_pop, metroarea_pop,  
       city_proper_pop / metroarea_pop * 100 AS city_perc
